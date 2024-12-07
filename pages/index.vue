@@ -12,7 +12,6 @@
 <script setup lang="ts">
 import SendMailModal from "@/components/SendMailModal.vue";
 import Button from "@/components/ui/button/Button.vue";
-console.log("dd");
 
 </script>
 

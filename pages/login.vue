@@ -1,28 +1,61 @@
 <template>
-  <div class="login-page">
-    <h1>Login</h1>
-    <form @submit.prevent="handleSubmit">
-      <div>
-        <label for="username">Username:</label>
-        <Input type="text" id="username" placeholder="Username" v-model="username" />
+  <div class="pt-10">
+    <Card class="mx-auto max-w-sm pt-6">
+    <CardHeader>
+      <CardTitle class="text-2xl">
+        Login
+      </CardTitle>
+      <CardDescription>
+        Enter your information below to login to your account
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div class="grid gap-4">
+        <div class="grid gap-2">
+          <Label for="username">Username</Label>
+          <Input
+            id="username"
+            type="text"
+            placeholder="elatla"
+            required
+            v-model="username"
+          />
+        </div>
+        <div class="grid gap-2">
+          <div class="flex items-center">
+            <Label for="password">Password</Label>
+          </div>
+          <Input 
+            id="password" 
+            type="password" 
+            placheholder="delunoalocho" 
+            required 
+            v-model="password" 
+          />
+        </div>
+        <Button type="submit" class="w-full">
+          Login
+        </Button>
       </div>
-      <div>
-        <label for="password">Password:</label>
-        <Input type="password" id="password" placeholder="Password" v-model="password" />
+      <div class="mt-4 text-center text-sm">
+        Don't have an account?
+        <a @click=goRegister class="underline">
+          Register
+        </a>
       </div>
-      <div>
-        <Button variant="link" @click=goRegister >Don't have an account? Register</Button>
-      </div>
-      <Button type="submit">Login</Button>
-    </form>
+    </CardContent>
+  </Card>
   </div>
+  
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { useRouter } from 'vue-router';
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { useRouter } from 'vue-router'
 
 const router = useRouter();
 

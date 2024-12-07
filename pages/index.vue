@@ -10,11 +10,12 @@
 </template>
 
 <script setup lang="ts">
+
 import SendMailModal from "@/components/SendMailModal.vue";
 import Button from "@/components/ui/button/Button.vue";
 
 </script>
 
 <style scoped>
-/* Puedes eliminar estos estilos ya que ahora están en Tailwind CSS */
+
 </style>

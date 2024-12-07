@@ -4,23 +4,32 @@
     <form @submit.prevent="handleSubmit">
       <div>
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" />
+        <Input type="text" id="username" placeholder="Username" v-model="username" />
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" />
+        <Input type="password" id="password" placeholder="Password" v-model="password" />
       </div>
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" />
+        <Input type="email" id="email" placeholder="Email" v-model="email" />
       </div>
-      <button type="submit">Register</button>
+      <div>
+        <!-- @click es para el router de vue)?-->
+        <Button variant="link" @click=goLogin >Already have an account? Login</Button>
+      </div>
+      <Button type="submit">Register</Button>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { Button } from "../components/ui/button"
+import { Input } from "../components/ui/input"
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const username = ref("");
 const password = ref("");
@@ -31,6 +40,10 @@ const handleSubmit = () => {
   console.log("Username:", username.value);
   console.log("Password:", password.value);
   console.log("Email:", email.value);
+};
+
+const goLogin = () => {
+  router.push('/login');
 };
 </script>
 
@@ -61,4 +74,5 @@ button {
   border: none;
   cursor: pointer;
 }
+
 </style>

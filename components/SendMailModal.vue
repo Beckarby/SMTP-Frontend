@@ -22,26 +22,39 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/toast";
-import { toTypedSchema } from "@vee-validate/zod";
 import { h, ref } from "vue";
 import * as z from "zod";
 
-const formSchema = toTypedSchema(
-  z.object({
-    email: z.string().email({ message: "Please enter a valid email address." }),
-    subject: z.string().min(1, { message: "Subject is required." }).max(100),
-  })
-);
+const formSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  subject: z.string().min(1, { message: "Subject is required." }).max(100),
+    content: z.string(),
+});
 
-function onSubmit(values: any) {
-  toast({
-    title: "Email sent with the following details:",
-    description: h(
-      "pre",
-      { class: "mt-2 w-[340px] rounded-md bg-slate-950 p-4" },
-      h("code", { class: "text-white" }, JSON.stringify(values, null, 2))
-    ),
-  });
+async function onSubmit(values: any) {
+  console.log("Form values:", values);
+
+  try {
+    await formSchema.parseAsync(values);
+    toast({
+      title: "Email sent with the following details:",
+      description: h(
+        "pre",
+        { class: "mt-2 w-[340px] rounded-md bg-slate-950 p-4" },
+        h("code", { class: "text-white" }, JSON.stringify(values, null, 2))
+      ),
+    });
+  console.log("Email sent with the following details:", values);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      error.errors.forEach((err) => {
+        toast({
+          title: "Validation Error",
+          description: err.message,
+        });
+      });
+    }
+  }
 }
 
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -66,12 +79,7 @@ function handleFileChange(event: Event) {
 </script>
 
 <template>
-  <Form
-    v-slot="{ handleSubmit, errors }"
-    as=""
-    keep-values
-    :validation-schema="formSchema"
-  >
+  <Form v-slot="{ handleSubmit, errors }" as="" keep-values>
     <Dialog>
       <DialogTrigger as-child>
         <Button variant="outline"> Send Email </Button>
@@ -121,8 +129,9 @@ function handleFileChange(event: Event) {
               <FormLabel class="form-item-title">Content</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Write your message here..."
                   class="resize-none"
+                  placeholder="Write your message here..."
+                  v-bind="componentField"
                 />
               </FormControl>
               <FormMessage v-if="errors.content">{{

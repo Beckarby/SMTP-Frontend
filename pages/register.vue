@@ -1,7 +1,7 @@
 <template>
   
   <div class="pt-10">
-    <form>
+    <form @submit.prevent="handleSubmit">
       <Card class="mx-auto max-w-sm pt-6">
     <CardHeader>
       <CardTitle class="text-2xl">

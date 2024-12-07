@@ -1,6 +1,8 @@
 <template>
+  
   <div class="pt-10">
-    <Card class="mx-auto max-w-sm pt-6">
+    <form>
+      <Card class="mx-auto max-w-sm pt-6">
     <CardHeader>
       <CardTitle class="text-2xl">
         Login
@@ -45,6 +47,7 @@
       </div>
     </CardContent>
   </Card>
+    </form>
   </div>
   
 </template>

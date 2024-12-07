@@ -1,6 +1,10 @@
 <template>
 
-
+  <div class="logout-button-wrapper">
+    <Button @click="logout" class="logout-button">
+      <span>Logout</span>
+    </Button>
+  </div>
   
     <h2 class="title text-white-900 text-4xl font-bold centered-title">SMTP CLIENT</h2>
     <div class="container">
@@ -76,6 +80,11 @@ function useMockData2() {
   emails.value = mockData2;
 }
 
+function logout() {
+  // Implement your logout logic here
+  console.log('User logged out');
+}
+
 </script>
 
 <style scoped>
@@ -130,6 +139,17 @@ function useMockData2() {
 .centered-title {
   text-align: center;
   margin: 20px 0;
+}
+
+.logout-button-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.logout-button {
+  background-color: red;
+  color: white;
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <Button @click="goToEmail" class="w-full bg-white boton">
+  <Button @click="goToEmail" class="w-full bg-white h-14 boton">
     <div
       class="flex  space-x-2 p-2 "
     >

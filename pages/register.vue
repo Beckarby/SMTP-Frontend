@@ -1,26 +1,67 @@
 <template>
-  <div class="register-page">
-    <h1>Register</h1>
-    <form @submit.prevent="handleSubmit">
-      <div>
-        <label for="username">Username:</label>
-        <Input type="text" id="username" placeholder="Username" v-model="username" />
+  
+  <div class="pt-10">
+    <form>
+      <Card class="mx-auto max-w-sm pt-6">
+    <CardHeader>
+      <CardTitle class="text-2xl">
+        Login
+      </CardTitle>
+      <CardDescription>
+        Enter your information below to make your account
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div class="grid gap-4">
+        <div class="grid gap-2">
+          <Label for="username">Username</Label>
+          <Input
+            id="username"
+            type="text"
+            placeholder="elatla"
+            required
+            v-model="username"
+          />
+        </div>
+        <div class="grid gap-2">
+          <div class="flex items-center">
+            <Label for="password">Password</Label>
+          </div>
+          <Input 
+            id="password" 
+            type="password" 
+            placheholder="delunoalocho" 
+            required 
+            v-model="password" 
+          />
+        </div>
+        <div class="grid gap-2">
+          <div class="flex items-center">
+            <Label for="email">Email</Label>
+          </div>
+          <Input 
+            id="email" 
+            type="email" 
+            placheholder="elatla@uru.edu" 
+            required 
+            v-model="email" 
+          />
+        </div>
+        <Button type="submit" class="w-full">
+          Login
+        </Button>
       </div>
-      <div>
-        <label for="password">Password:</label>
-        <Input type="password" id="password" placeholder="Password" v-model="password" />
+      <div class="mt-4 text-center text-sm">
+        Already have an account?
+        <a @click=goLogin class="underline">
+          Login
+        </a>
       </div>
-      <div>
-        <label for="email">Email:</label>
-        <Input type="email" id="email" placeholder="Email" v-model="email" />
-      </div>
-      <div>
-        <!-- @click es para el router de vue)?-->
-        <Button variant="link" @click=goLogin >Already have an account? Login</Button>
-      </div>
-      <Button type="submit">Register</Button>
+    </CardContent>
+  </Card>
     </form>
   </div>
+  
 </template>
 
 <script setup lang="ts">

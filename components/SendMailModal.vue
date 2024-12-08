@@ -21,7 +21,8 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/toast/use-toast";
 import { toTypedSchema } from "@vee-validate/zod";
 import { h, ref } from "vue";
 import * as z from "zod";
@@ -32,7 +33,7 @@ const formSchema = toTypedSchema(z.object({
   content: z.string().optional(),
 }));
 
-
+const { toast } = useToast();
 
 async function onSubmit(values: any) {
     toast({
@@ -68,6 +69,7 @@ function handleFileChange(event: Event) {
 </script>
 
 <template>
+  <Toaster />
   <Form
     v-slot="{ handleSubmit, errors }"
     as=""

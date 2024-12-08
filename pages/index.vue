@@ -42,7 +42,10 @@
 import SendMailModal from "@/components/SendMailModal.vue";
 import Button from "@/components/ui/button/Button.vue";
 import MailButton from "@/components/MailButton.vue";
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
+
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const mockData1 = [
   { id: 1, email: 'example1@example.com', subject: 'Subject 1' },
@@ -83,6 +86,7 @@ function useMockData2() {
 function logout() {
   // Implement your logout logic here
   console.log('User logged out');
+  router.push('/login');
 }
 
 </script>

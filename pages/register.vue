@@ -1,18 +1,18 @@
 <template>
   
-  <div class="pt-10">
+  <div class="pt-11">
     <form @submit.prevent="handleSubmit">
-      <Card class="mx-auto max-w-sm pt-6">
+      <Card class="mx-auto max-w-sm pt-4">
     <CardHeader>
-      <CardTitle class="text-2xl">
-        Login
+      <CardTitle class="text-2xl text-[#22B357]">
+        Register
       </CardTitle>
       <CardDescription>
         Enter your information below to make your account
       </CardDescription>
     </CardHeader>
     <CardContent>
-      <div class="grid gap-4">
+      <div class="grid gap-2">
         <div class="grid gap-2">
           <Label for="username">Username</Label>
           <Input
@@ -53,7 +53,7 @@
       </div>
       <div class="mt-4 text-center text-sm">
         Already have an account?
-        <a @click=goLogin class="underline">
+        <a @click=goLogin class="underline text-[#22B357]">
           Login
         </a>
       </div>
@@ -86,6 +86,8 @@ const handleSubmit = () => {
 const goLogin = () => {
   router.push('/login');
 };
+
+
 </script>
 
 <style scoped>

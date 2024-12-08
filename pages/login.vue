@@ -4,7 +4,7 @@
     <form @submit.prevent="handleSubmit">
       <Card class="mx-auto max-w-sm pt-6">
     <CardHeader>
-      <CardTitle class="text-2xl">
+      <CardTitle class="text-2xl text-[#22B357]">
         Login
       </CardTitle>
       <CardDescription>
@@ -41,7 +41,7 @@
       </div>
       <div class="mt-4 text-center text-sm">
         Don't have an account?
-        <a @click=goRegister class="underline">
+        <a @click=goRegister class="underline text-[#22B357]">
           Register
         </a>
       </div>

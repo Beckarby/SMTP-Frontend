@@ -14,13 +14,13 @@
     <CardContent>
       <div class="grid gap-2">
         <div class="grid gap-2">
-          <Label for="username">Username</Label>
+          <Label for="email">Email</Label>
           <Input
-            id="username"
-            type="text"
-            placeholder="elatla"
+            id="email"
+            type="email"
+            placeholder="elatla@uru.edu"
             required
-            v-model="username"
+            v-model="email"
           />
         </div>
         <div class="grid gap-2">
@@ -35,18 +35,7 @@
             v-model="password" 
           />
         </div>
-        <div class="grid gap-2">
-          <div class="flex items-center">
-            <Label for="email">Email</Label>
-          </div>
-          <Input 
-            id="email" 
-            type="email" 
-            placheholder="elatla@uru.edu" 
-            required 
-            v-model="email" 
-          />
-        </div>
+
         <Button type="submit" class="w-full">
           Login
         </Button>
@@ -72,18 +61,25 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const username = ref("");
+
 const password = ref("");
 const email = ref("");
 
-const handleSubmit = () => {
-  // Handle form submission
-  console.log("Username:", username.value);
-  console.log("Password:", password.value);
-  console.log("Email:", email.value);
+
+
+const handleSubmit = (event: Event) => {
+
+  router.push('/login');
+
 };
 
 const goLogin = () => {
+  console.log("Email:", email.value);
+
+console.log("Go to login");
+
+
+
   router.push('/login');
 };
 

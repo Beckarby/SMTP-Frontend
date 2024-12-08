@@ -22,20 +22,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/toast";
+import { toTypedSchema } from "@vee-validate/zod";
 import { h, ref } from "vue";
 import * as z from "zod";
 
-const formSchema = z.object({
+const formSchema = toTypedSchema(z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   subject: z.string().min(1, { message: "Subject is required." }).max(100),
-    content: z.string(),
-});
+  content: z.string(),
+}));
+
+
 
 async function onSubmit(values: any) {
-  console.log("Form values:", values);
-
   try {
-    await formSchema.parseAsync(values);
     toast({
       title: "Email sent with the following details:",
       description: h(
@@ -44,7 +44,7 @@ async function onSubmit(values: any) {
         h("code", { class: "text-white" }, JSON.stringify(values, null, 2))
       ),
     });
-  console.log("Email sent with the following details:", values);
+    console.log("Email sent with the following details:", values);
   } catch (error) {
     if (error instanceof z.ZodError) {
       error.errors.forEach((err) => {
@@ -79,7 +79,12 @@ function handleFileChange(event: Event) {
 </script>
 
 <template>
-  <Form v-slot="{ handleSubmit, errors }" as="" keep-values>
+  <Form
+    v-slot="{ handleSubmit, errors }"
+    as=""
+    keep-values
+    :validation-schema="formSchema"
+  >
     <Dialog>
       <DialogTrigger as-child>
         <Button variant="outline"> Send Email </Button>
@@ -104,7 +109,9 @@ function handleFileChange(event: Event) {
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormMessage v-if="errors.email">{{ errors.email }}</FormMessage>
+<!--               <FormMessage v-if="errors.email">{{ errors.email }}</FormMessage> -->
+              <FormMessage />
+
             </FormItem>
           </FormField>
 
@@ -118,9 +125,11 @@ function handleFileChange(event: Event) {
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormMessage v-if="errors.subject">{{
+<!--               <FormMessage v-if="errors.subject">{{
                 errors.subject
-              }}</FormMessage>
+              }}</FormMessage> -->
+              <FormMessage />
+
             </FormItem>
           </FormField>
 
@@ -134,15 +143,17 @@ function handleFileChange(event: Event) {
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormMessage v-if="errors.content">{{
+<!--               <FormMessage v-if="errors.content">{{
                 errors.content
-              }}</FormMessage>
+              }}</FormMessage> -->
+              <FormMessage />
+
             </FormItem>
           </FormField>
         </form>
 
-        <DialogFooter>
-          <Button type="submit" form="dialogForm"> Send </Button>
+        <Button type="submit" form="dialogForm"> Send </Button>
+<!--         <DialogFooter>
           <Button variant="outline" @click="triggerFileInput"> Attach </Button>
           <input
             id="fileInput"
@@ -151,18 +162,12 @@ function handleFileChange(event: Event) {
             @change="handleFileChange"
             ref="fileInput"
           />
-        </DialogFooter>
+        </DialogFooter> -->
       </DialogContent>
     </Dialog>
   </Form>
 </template>
 
 <style scoped>
-.form-item-title {
-  color: rgb(255, 255, 255);
-}
 
-.hidden {
-  display: none;
-}
 </style>

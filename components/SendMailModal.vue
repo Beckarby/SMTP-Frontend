@@ -29,7 +29,7 @@ import * as z from "zod";
 const formSchema = toTypedSchema(z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   subject: z.string().min(1, { message: "Subject is required." }).max(100),
-  content: z.string(),
+  content: z.string().optional(),
 }));
 
 
@@ -140,23 +140,29 @@ function handleFileChange(event: Event) {
             </FormItem>
           </FormField>
         </form>
-
+        
+                <DialogFooter>
+                  <Button variant="outline" @click="triggerFileInput"> Attach </Button>
+                  <input
+                    id="fileInput"
+                    type="file"
+                    class="hidden"
+                    @change="handleFileChange"
+                    ref="fileInput"
+                  />
+                </DialogFooter>
         <Button type="submit" form="dialogForm"> Send </Button>
-<!--         <DialogFooter>
-          <Button variant="outline" @click="triggerFileInput"> Attach </Button>
-          <input
-            id="fileInput"
-            type="file"
-            class="hidden"
-            @change="handleFileChange"
-            ref="fileInput"
-          />
-        </DialogFooter> -->
       </DialogContent>
     </Dialog>
   </Form>
 </template>
 
 <style scoped>
+.form-item-title {
+  color: rgb(255, 255, 255);
+}
 
+.hidden {
+  display: none;
+}
 </style>

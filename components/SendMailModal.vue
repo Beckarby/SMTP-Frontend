@@ -35,7 +35,6 @@ const formSchema = toTypedSchema(z.object({
 
 
 async function onSubmit(values: any) {
-  try {
     toast({
       title: "Email sent with the following details:",
       description: h(
@@ -45,16 +44,6 @@ async function onSubmit(values: any) {
       ),
     });
     console.log("Email sent with the following details:", values);
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      error.errors.forEach((err) => {
-        toast({
-          title: "Validation Error",
-          description: err.message,
-        });
-      });
-    }
-  }
 }
 
 const fileInput = ref<HTMLInputElement | null>(null);

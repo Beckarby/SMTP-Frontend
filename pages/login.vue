@@ -69,6 +69,7 @@ const handleSubmit = () => {
   // Handle form submission
   console.log("Username:", username.value);
   console.log("Password:", password.value);
+  router.push('/home');
 };
 
 const goRegister = () => {

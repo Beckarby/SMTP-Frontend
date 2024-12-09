@@ -65,11 +65,32 @@ const router = useRouter();
 const username = ref("");
 const password = ref("");
 
-const handleSubmit = () => {
-  // Handle form submission
-  console.log("Username:", username.value);
-  console.log("Password:", password.value);
-  router.push('/home');
+const handleSubmit = async () => {
+  try {
+    const response = await fetch('http://shadedcitadel.xyz:8443/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: username.value,
+        password: password.value
+      })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Login successful:", data);
+      router.push('/home');
+    } else if (response.status === 404) {
+      const errorData = await response.json();
+      console.error("User not found:", errorData);
+    } else {
+      console.error("An error occurred:", response.statusText);
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
 };
 
 const goRegister = () => {

@@ -61,16 +61,34 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-
 const password = ref("");
 const email = ref("");
+const name = ref("");
 
+const handleSubmit = async (event: Event) => {
+  try {
+    const response = await fetch('http://shadedcitadel.xyz:8443/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+        name: name.value
+      })
+    });
 
-
-const handleSubmit = (event: Event) => {
-
-  router.push('/login');
-
+    if (response.ok) {
+      router.push('/login');
+    } else if (response.status === 409) {
+      alert("A user with the provided email already exists");
+    } else {
+      console.error("An error occurred during registration:", response.statusText);
+    }
+  } catch (error) {
+    console.error("An error occurred during registration:", error);
+  }
 };
 
 const goLogin = () => {

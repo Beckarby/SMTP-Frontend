@@ -49,27 +49,9 @@ const router = useRouter();
 
 const mockData1 = [
   { id: 1, email: 'example1@example.com', subject: 'Subject 1' },
-  { id: 2, email: 'example2@example.com', subject: 'Subject 2' },
-  { id: 3, email: 'example3@example.com', subject: 'Subject 3' },
-  { id: 4, email: 'example4@example.com', subject: 'Subject 4' },
-  { id: 5, email: 'example5@example.com', subject: 'Subject 5' },
-  { id: 6, email: 'example6@example.com', subject: 'Subject 6' },
-  { id: 7, email: 'example7@example.com', subject: 'Subject 7' },
-  { id: 8, email: 'example8@example.com', subject: 'Subject 8' },
-  { id: 9, email: 'example9@example.com', subject: 'Subject 9' },
-  { id: 10, email: 'example10@example.com', subject: 'Subject 10' }
 ];
 
 const mockData2 = [
-  { id: 11, email: 'example11@example.com', subject: 'Subject 11' },
-  { id: 12, email: 'example12@example.com', subject: 'Subject 12' },
-  { id: 13, email: 'example13@example.com', subject: 'Subject 13' },
-  { id: 14, email: 'example14@example.com', subject: 'Subject 14' },
-  { id: 15, email: 'example15@example.com', subject: 'Subject 15' },
-  { id: 16, email: 'example16@example.com', subject: 'Subject 16' },
-  { id: 17, email: 'example17@example.com', subject: 'Subject 17' },
-  { id: 18, email: 'example18@example.com', subject: 'Subject 18' },
-  { id: 19, email: 'example19@example.com', subject: 'Subject 19' },
   { id: 20, email: 'example20@example.com', subject: 'Subject 20' }
 ];
 
